@@ -34,10 +34,11 @@ Running the build process and deploying an application to AWS within a serverles
 
 ### 4.1.1
 
-AWS Lambdas functions are limited to [15 minutes][1] of
+AWS Lambdas functions are limited to 15 minutes [^1] of
 
 References:
-[1]: https://docs.aws.amazon.com/lambda/latest/dg/gettingstarted-limits.html#:~:text=function%20scaling.-,Function%20configuration%2C%20deployment%2C%20and%20execution,-The%20following%20quotas “Lambda Quotas - AWS Documentation”
+
+[^1]: [Lambda Quotas - AWS Documentation](https://docs.aws.amazon.com/lambda/latest/dg/gettingstarted-limits.html#:~:text=function%20scaling.-,Function%20configuration%2C%20deployment%2C%20and%20execution,-The%20following%20quotas)
 
 # 5- UI and UX
 
