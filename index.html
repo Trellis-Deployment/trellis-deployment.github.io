@@ -2,10 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link
-      rel="stylesheet"
-      href="stylesheets/reset.css"
-    />
+
     <!-- Swiper JS -->
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 
@@ -14,20 +11,488 @@
       rel="stylesheet"
       href="https://unpkg.com/swiper/swiper-bundle.min.css"
     />
-    <title>Trellis</title>
-    
-    <link
-      rel="stylesheet" href="stylesheets/style.css"
+    <!-- BEGIN Info -->
+    <meta 
+      name="title" 
+      property="og:title" 
+      content="Trellis" 
     />
+    <meta property="og:type" content="Website" />
+    <meta
+      name="image"
+      property="og:image"
+      content="images/thumb.png"
+    />
+    <meta 
+      name="description" 
+      property="og:description" 
+      content="Trellis - an open-source, low-config deployment pipeline for serverless applications." 
+    />
+    <meta name="author" content="Trellis" />
+    <!-- END Info -->
+    <!-- BEGIN favicon -->
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="images/favicon/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="images/favicon/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="images/favicon/favicon-16x16.png"
+    />
+    <link rel="manifest" href="images/favicon/site.webmanifest" />
+    <link
+      rel="mask-icon"
+      href="images/favicon/safari-pinned-tab.svg"
+      color="#5bbad5"
+    />
+    <link rel="shortcut icon" href="images/favicon/favicon.ico" />
+    <meta name="msapplication-TileColor" content="#ffffff" />
+    <meta
+      name="msapplication-config"
+      content="images/favicon/browserconfig.xml"
+    />
+    <meta name="theme-color" content="#ffffff" />
+    <!-- END favicon -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Trellis</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/@tailwindcss/typography@0.2.x/dist/typography.min.css"
+    />
+    <link rel="stylesheet" href="stylesheets/reset.css" />
+    <link rel="stylesheet" href="stylesheets/style.css" />
+    <link rel="stylesheet" href="stylesheets/responsive.css" />
   </head>
   <body>
-    <div class="container">
-      <div class="project-content">
-        <img src="images/thumb.png" alt="logo">
+    <header>
+      <div id="header">
+        <a href="">
+          <img src="images/logo/color_logo.svg" />
+        </a>
+        <nav>
+          <a href="#start-here" class="selected">Start Here</a>
+          <a href="#case-study">Case Study</a>
+          <a href="#presentation">Presentation</a>
+          <a href="#our-team">Our Team</a>
+          <a
+            href="https://github.com/Trellis-Deployment"
+            target="_blank"
+            class="icon"
+            ><i class="fab fa-github"></i
+          ></a>
+        </nav>
       </div>
-      <div class="front-logo">
-        <h2>An open-source, low-config deployment pipeline for serverless applications!</h2>
+      <div id="header-buffer"></div>
+    </header>
+    <div id="start-here" class="main-section">
+      <div class="h-full">
+        <div class="static-logo-color">
+          <img class="jolt lg-screen" src="images/logo/color_logo.svg" />
+        </div>
+        <div class="bg-blue">
+          <img
+            class="jolt sm-screen"
+            src="images/logo/color_logo.svg"
+          />
+          <p>
+            An open-source, low-config deployment pipeline for serverless applications.
+          </p>
+        </div>
+      </div>
+      <div class="h-full">
+        <div class="bg-teal static-logo-teal-light">
+          <h2><span>Open-Source. </span><span>Low-Config. </span><span>Team-Oriented. </span></h2>
+        </div>
+        <div class="bg-teal">
+          <h2 class="sm-header">Open-Source. Low-Config. Team-Oriented.</h2>
+          <p>
+            Trellis handles the complexity of setting up an automated deployment pipeline for serverless applications.
+          </p>
+          <p>!!!!!!!!!video of moving through the dashboard!!!!!!!!!!</p>
+          </div>
       </div>
     </div>
+    <div id="sticky">
+      <aside id="toc">
+        <ul>
+          <li data-section="introduction">
+            <a href="#introduction">
+              <div>
+                <div class="bullet"><div></div></div>
+                <p>1. Introduction</p>
+              </div>
+            </a>
+          </li>
+          <li data-section="technical-background">
+            <a href="#technical-background">
+              <div>
+                <div class="bullet"><div></div></div>
+                <p>2. Technical Background</p>
+              </div>
+            </a>
+          </li>
+          <li data-section="technical-background" class="subitem">
+            <a href="#serverless-applications">
+              <div>
+                <div class="bullet"><div></div></div>
+                <p>2.1 Serverless Applications</p>
+              </div>
+            </a>
+          </li>
+          <li data-section="technical-background" class="subitem">
+            <a href="#what-is-serverless">
+              <div>
+                <div class="bullet"><div></div></div>
+                <p>2.1.1 What is Serverless</p>
+              </div>
+            </a>
+          </li>
+          <li data-section="technical-background" class="subitem">
+            <a href="#why-serverless">
+              <div>
+                <div class="bullet"><div></div></div>
+                <p>2.1.2 Why Serverless</p>
+              </div>
+            </a>
+          </li>
+          <li data-section="technical-background" class="subitem">
+            <a href="#serverless-development">
+              <div>
+                <div class="bullet"><div></div></div>
+                <p>2.1.3 Serverless Development</p>
+              </div>
+            </a>
+          </li>
+          <li data-section="technical-background" class="subitem">
+            <a href="#serverless-development-with-serverless-stack">
+              <div>
+                <div class="bullet"><div></div></div>
+                <p>2.1.4 Serverless Development With Serverless Stack</p>
+              </div>
+            </a>
+          </li>
+          <li data-section="technical-background" class="subitem">
+            <a href="#deployment">
+              <div>
+                <div class="bullet"><div></div></div>
+                <p>2.2 Deployment</p>
+              </div>
+            </a>
+          </li>
+          <li data-section="automated-deployment-pipelines-for-serverless-applications" class="subitem">
+            <a href="#automated-deployment-pipelines-for-serverless-applications">
+              <div>
+                <div class="bullet"><div></div></div>
+                <p>2.3 Automated Deployment Pipelines for Serverless Applications</p>
+              </div>
+            </a>
+          </li>
+          <li data-section="designing-trellis">
+            <a href="#designing-trellis">
+              <div>
+                <div class="bullet"><div></div></div>
+                <p>3. Designing Trellis</p>
+              </div>
+            </a>
+          </li>
+          <li data-section="overall-design-goals" class="subitem">
+            <a href="#overall-design-goals">
+              <div>
+                <div class="bullet"><div></div></div>
+                <p>3.1 Overall Design Goals</p>
+              </div>
+            </a>
+          </li>
+          <li data-section="trellis-as-a-serverless-application" class="subitem">
+            <a href="#trellis-as-a-serverless-application">
+              <div>
+                <div class="bullet"><div></div></div>
+                <p>3.2 Trellis as a Serverless Application</p>
+              </div>
+            </a>
+          </li>
+          <li data-section="high-level-architecture" class="subitem">
+            <a href="#high-level-architecture">
+              <div>
+                <div class="bullet"><div></div></div>
+                <p>3.3 High-level architecture</p>
+              </div>
+            </a>
+          </li>
+          <li data-section="executing-builds-and-deployments">
+            <a href="#executing-builds-and-deployments">
+              <div>
+                <div class="bullet"><div></div></div>
+                <p>4. Executing Builds and Deployments</p>
+              </div>
+            </a>
+          </li>
+          <li data-section="options-for-deploying-users-applications" class="subitem">
+            <a href="#options-for-deploying-users-applications">
+              <div>
+                <div class="bullet"><div></div></div>
+                <p>4.1 Options for Deploying Users Applications</p>
+              </div>
+            </a>
+          </li>
+          <li data-section="implementing-aws-ecs" class="subitem">
+            <a href="#implementing-aws-ecs">
+              <div>
+                <div class="bullet"><div></div></div>
+                <p>4.2 Implementing AWS ECS</p>
+              </div>
+            </a>
+          </li>
+          <li data-section="initiating-builds-and-promotions" class="subitem">
+            <a href="#initiating-builds-and-promotions">
+              <div>
+                <div class="bullet"><div></div></div>
+                <p>4.3 Initiating builds and promotions</p>
+              </div>
+            </a>
+          </li>
+          <li data-section="user-experience">
+            <a href="#user-experience">
+              <div>
+                <div class="bullet"><div></div></div>
+                <p>5. User Experience</p>
+              </div>
+            </a>
+          </li>
+          <li data-section="a-centralized-dashboard" class="subitem">
+            <a href="#a-centralized-dashboard">
+              <div>
+                <div class="bullet"><div></div></div>
+                <p>5.1 A Centralized Dashboard</p>
+              </div>
+            </a>
+          </li>
+          <li data-section="gitHub-authentication" class="subitem">
+            <a href="#gitHub-authentication">
+              <div>
+                <div class="bullet"><div></div></div>
+                <p>5.2 GitHub Authentication</p>
+              </div>
+            </a>
+          </li>
+          <li data-section="real-time-deployment-data" class="subitem">
+            <a href="#real-time-deployment-data">
+              <div>
+                <div class="bullet"><div></div></div>
+                <p>5.3 Real-Time Deployment Data</p>
+              </div>
+            </a>
+          </li>
+          <li data-section="storing-sensitive-information">
+            <a href="#storing-sensitive-information">
+              <div>
+                <div class="bullet"><div></div></div>
+                <p>6. Storing Sensitive Information</p>
+              </div>
+            </a>
+          </li>
+          <li data-section="future-work">
+            <a href="#future-work">
+              <div>
+                <div class="bullet"><div></div></div>
+                <p>7. Future Work</p>
+              </div>
+            </a>
+          </li>
+        </ul>
+      </aside>
+    </div>
+    <div id="case-study" class="main-section">
+      <div id="case-study-content">
+        <div class="prose">
+          <h1>Case Study</h1>
+          <div id="introduction">
+            <h2>1. Introduction</h2>
+            <p>
+              Trellis is an open-source, low-config deployment pipeline for serverless applications.
+              It minimizes the number of steps required for teams to start deploying their code to the cloud,
+              and its dashboard provides a centralized space for teams to monitor and manage multiple deployment environments.
+            </p>
+            <p>
+              Trellis handles the complexity of setting up an automated deployment pipeline for serverless applications.
+              This makes it suitable for teams who don’t want to worry about allocating engineering resources for setting up and maintaining one themselves.
+              Trellis takes care of the configuration so developers can focus on adding business value by coding new features and testing them out in the cloud.
+            </p>
+            <p>
+              This case study will shed light on the value of Trellis by addressing the problem it solves and exploring the underlying complexity that hides.
+              It will also describe the various challenges, trade-offs, and choices faced in building Trellis.
+            </p>
+          </div>
+          <div id="technical-background">
+            <h2>2. Technical Background</h2>
+            <p>
+              To set a firm foundation for the objectives of Trellis, we will first examine the technical background of the overarching problem domains:
+              serverless applications and deployments.
+            </p>
+          </div>
+          <div id="serverless-applications">
+            <h3>2.1 Serverless Applications</h3>
+          </div>
+          <div id="what-is-serverless">
+            <h4>2.1.1 What is Serverless</h4>
+            <p>
+              Serverless is an architectural model that frees software developers from the need to consider and manage servers while creating and running applications.
+              Serverless computing allows cloud providers to manage the underlying physical infrastructure,
+              relieving developers of the burden of doing it themselves<a href="#reference-2-1"><sup>2-1</sup></a>.
+            </p>
+          </div>
+          <div id="why-serverless">
+            <h4>2.1.2 Why Serverless</h4>
+            <p>There are several reasons to choose a serverless application architecture, including <a href="#reference-2-2"><sup>2-2</sup></a>:</p>
+            <ul>
+              <li>
+                Lower startup costs: developers can start prototyping high-quality software without needing to make significant infrastructure investments.
+                With the full power of a cloud provider available over the internet, even small teams can build and release enterprise-scale software.
+              </li>
+              <li>
+                No server management necessary means less time, money, and work allocated to a dedicated DevOps team.
+              </li>
+              <li>
+                Developers only pay for the server space they use, reducing resource waste.
+              </li>
+              <li>
+                Applications are automatically scaled as needed, so servers are automatically scaled out and back in according to real-time traffic.
+                This auto-scaling capability is ideal for bursty or otherwise unpredictable traffic patterns.
+              </li>
+              <li>
+                Code can run closer to users as it is not geographically limited to an organization’s physical location.
+              </li>
+            </ul>
+            <p>
+              While serverless architectures offer several perks, they are not necessarily suitable for all teams;
+              some might want to avoid vendor lock-in, manage their physical infrastructure, or have servers up and running constantly.
+              Nonetheless, over half of all organizations operating in the cloud have adopted serverless technologies<a href="#reference-2-3"><sup>2-3</sup></a>,
+              indicating that the serverless paradigm has become essential to modern development.
+            </p>
+          </div>
+          <div id="serverless-development">
+            <h4>2.1.3 Serverless Development</h4>
+            <p>
+              Developing a serverless application involves choosing a cloud provider, determining which of its managed services are needed,
+              and then stitching them together to provide  the application’s required functionality<a href="#reference-2-4"><sup>2-4</sup></a>.
+              Cloud providers offer hundreds of services and infrastructure components, and while they aim to make them as accessible as possible,
+              developers still need to do the work of specifying what resources to provision and how to configure them.
+            </p>
+            <p>
+              As applications grow in size and utilize an increasing number of cloud components,
+              developers face several challenges in manually provisioning and managing infrastructure, such as environment drift.
+              Environment drift occurs when there is a discrepancy between environments that are designed to be the same.
+              To manage these challenges, cloud providers and third parties have utilized a model called Infrastructure as Code.
+              Infrastructure as Code (IaC) is a model that allows developers to provision their infrastructure using code.
+            </p>
+            <p>
+              With IaC, engineers can document, edit, distribute,
+              and replicate their infrastructure configurations using a familiar programming language<a href="#reference-2-5"><sup>2-5</sup></a>.
+              As such, application infrastructure can be coupled with the logic that depends on it,
+              turning source code and its corresponding builds into comprehensive artifacts that define everything the application needs to function [^5].
+              Because these artifacts precisely codify the infrastructure they rely on, they can be deployed with minimal manual configuration.
+            </p>
+            <video src="images/diagrams/section2/iac.mov" autoplay controls loop></video>
+          </div>
+          <div id="serverless-development-with-serverless-stack">
+            <h4>2.1.4 Serverless Development With Serverless Stack</h4>
+            <p>
+              There are several cloud providers, each with multiple IaC tooling solutions for developers to choose from.
+              The options include first-party solutions offered by the cloud provider directly (e.g. AWS CDK, GCP Deployment Manager, Axure Bicep),
+              vendor-agnostic tools built on first-party APIs (e.g. Terraform, Pulumi),
+              and even frameworks that abstract away common configurations and implement opinionated approaches to common full-stack development practices
+              (e.g. Serverless Framework, Serverless Stack).
+            </p>
+            <p>
+              In developing Trellis we have specifically chosen to support applications developed using the Serverless Stack (SST) Framework.
+              SST is a JavaScript framework which extends AWS CDK. In addition to being an IaC tool it offers several useful features for developers of serverless applications.
+              We chose to support SST because it[^6]:
+            </p>
+            <ul>
+              <li>
+                Strives to make it easy to build serverless applications on AWS, and AWS is the most-widely-used cloud provider, consuming 30% of the global cloud market
+              </li>
+              <li>
+                Provides high-level, composable constructs designed specifically for serverless applications, but also supports native CDK constructs when needed.
+              </li>
+              <li>
+                Is built on the AWS JavaScript CDK (Cloud Development Kit), which makes it accessible to millions of JavaScript users around the world. 
+              </li>
+              <li>
+                Offers development tools like an infrastructure management console and live local lambda development,
+                which enables debugging breakpoints and instant feedback on changes made to lambda functions.
+              </li>
+            </ul>
+            <p>
+              While these features make SST a helpful development framework,
+              developers still need to implement best practices throughout the entire software development life cycle to consistently release quality work.
+              In particular, Trellis builds on SST to help teams follow some of the best practices regarding application deployment.
+            </p>
+          </div>
+          <div id="deployment">
+            <h3>2.2 Deployment</h3>
+            <p>
+              In order to grasp the utility of Trellis as a deployment tool, we must understand the role that deployment plays in building quality software.
+            </p>
+          </div>
+          <div id="future-work">
+            <h2>9. Future Work</h2>
+            <p>Some future work we have in mind includes:</p>
+            <ul>
+              <li>Github integration using Github Actions that would allow for continuous deployment.</li>
+              <li>Adding dynamic routing for functions</li>
+              <li>Route53 integration to automate adding custom domain names</li>
+              <li>Additional Lambda Runtimes such as Ruby and Go</li>
+            </ul>
+          </div>
+          <div id="references">
+            <h2>References</h2>
+            <ol class="indented">
+              <li id="reference-2-1"><a href="https://aws.amazon.com/lambda/serverless-architectures-learn-more/" style=>https://aws.amazon.com/lambda/serverless-architectures-learn-more/</a></li>
+              <li id="reference-2-2"><a href="https://www.cloudflare.com/learning/serverless/why-use-serverless/" style=>https://www.cloudflare.com/learning/serverless/why-use-serverless/</a></li>
+              <li id="reference-2-3"><a href="https://www.datadoghq.com/state-of-serverless/" style=>https://www.datadoghq.com/state-of-serverless/</a></li>
+              <li id="reference-2-4"><a href="https://aws.amazon.com/serverless/build-a-web-app/" style=>https://aws.amazon.com/serverless/build-a-web-app/</a></li>
+              <li id="reference-2-5"><a href="https://www.redhat.com/en/topics/automation/what-is-infrastructure-as-code-iac" style=>https://www.redhat.com/en/topics/automation/what-is-infrastructure-as-code-iac</li>
+
+            </ol>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="presentation" class="main-section">
+      <div class="bg-gray">
+        <h2>Presentation</h2>
+      </div>
+    </div>
+    <div id="our-team" class="main-section">
+      <div>
+        <div>
+          <div>
+            <h2>Meet Our Team</h2>
+            <p class="text-xl text-gray-300">
+              We are currently looking for opportunities. If you liked what you
+              saw and want to talk more, please reach out!
+            </p>
+          </div>
+          <ul class="people">
+          </ul>
+        </div>
+      </div>
+    </div>
+    <script src="javascripts/script.js"></script>
   </body>
 </html>
