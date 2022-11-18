@@ -8,6 +8,7 @@ const toc = document.getElementById("toc");
 const tocLinks = document.querySelectorAll("#toc a");
 const tocLinksCount = tocLinks.length;
 const team = document.querySelector("#our-team ul li");
+console.log({team});
 
 // Handlers
 const handleScroll = () => {
