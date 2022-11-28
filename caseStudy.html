@@ -78,8 +78,28 @@
     <link rel="stylesheet" href="stylesheets/responsive.css" />
   </head>
   <body>
+    <header>
+      <div id="header">
+        <a href="">
+          <img src="images/logo/color_logo.svg" />
+        </a>
+        <nav>
+          <a href="index.html">Start Here</a>
+          <a href="caseStudy.html" class="selected">Case Study</a>
+          <a href="presentation.html">Presentation</a>
+          <a href="team.html">Our Team</a>
+          <a
+            href="https://github.com/Trellis-Deployment"
+            target="_blank"
+            class="icon"
+            ><i class="fab fa-github"></i
+          ></a>
+        </nav>
+      </div>
+      <div id="header-buffer"></div>
+    </header>
     <div id="sticky">
-      <aside id="toc">
+      <aside id="toc" class="show">
         <ul>
           <li data-section="introduction">
             <a href="#introduction">
@@ -270,7 +290,7 @@
     </div>
     <div id="case-study" class="main-section">
       <div id="case-study-content">
-        <div class="prose">
+        <div class="prose prose-xl">
           <h1>Case Study</h1>
           <div id="introduction">
             <h2>1. Introduction</h2>
@@ -358,7 +378,7 @@
               turning source code and its corresponding builds into comprehensive artifacts that define everything the application needs to function [^5].
               Because these artifacts precisely codify the infrastructure they rely on, they can be deployed with minimal manual configuration.
             </p>
-            <video src="images/diagrams/section2/iac.mov" autoplay controls loop></video>
+            <video src="images/diagrams/section2/iac.mov" controls></video>
           </div>
           <div id="serverless-development-with-serverless-stack">
             <h4>2.1.4 Serverless Development With Serverless Stack</h4>
@@ -415,5 +435,6 @@
         </div>
       </div>
     </div>
+    <script src="javascripts/caseStudy.js"></script>
   </body>
 </html>

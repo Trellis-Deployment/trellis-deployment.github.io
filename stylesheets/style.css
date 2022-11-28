@@ -3,10 +3,10 @@
 /* @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap'); */
 
 :root {
-  --jolt-blue: #00B4FF;
-  --jolt-teal: #3D97D0;
-  --jolt-teal-light: rgba(0, 189, 170, 0.2);
-  --jolt-black: #071E3D;
+  --trellis-blue: #00B4FF;
+  --trellis-teal: #3D97D0;
+  --trellis-teal-light: rgba(0, 189, 170, 0.2);
+  --trellis-black: #071E3D;
 
   --white: #ffffff;
   --gray-50: rgb(249, 250, 251);
@@ -48,15 +48,15 @@ body {
 }
 
 .bg-blue {
-  background-color: var(--jolt-blue);
+  background-color: var(--trellis-blue);
 }
 
 .bg-teal {
-  background-color: var(--jolt-teal);
+  background-color: var(--trellis-teal);
 }
 
 .bg-pink {
-  background-color: var(--jolt-pink);
+  background-color: var(--trellis-pink);
 }
 
 .bg-gray {
@@ -64,11 +64,11 @@ body {
 }
 
 .text-pink {
-  color: var(--jolt-pink);
+  color: var(--trellis-pink);
 }
 
 .text-teal {
-  color: var(--jolt-teal);
+  color: var(--trellis-teal);
 }
 
 .block {
@@ -131,7 +131,7 @@ body {
   outline: 2px solid transparent;
   outline-offset: 2px;
 
-  box-shadow: 0 0 0 2px var(--white), 0 0 0 4px var(--jolt-teal);
+  box-shadow: 0 0 0 2px var(--white), 0 0 0 4px var(--trellis-teal);
 }
 
 #menu button svg {
@@ -179,9 +179,9 @@ body {
 }
 
 #mobile-menu > a.selected {
-  background-color: var(--jolt-teal-light);
-  border-left-color: var(--jolt-teal);
-  color: var(--jolt-black);
+  background-color: var(--trellis-teal-light);
+  border-left-color: var(--trellis-teal);
+  color: var(--trellis-black);
 }
 
 .mobile-menu-open #mobile-menu {
@@ -219,16 +219,16 @@ body {
 }
 
 #toc a {
-  color: var(--jolt-black);
+  color: var(--trellis-black);
   text-decoration: none;
 }
 
 #toc a:hover {
-  color: var(--jolt-blue);
+  color: var(--trellis-blue);
 }
 
 #toc .selected a {
-  color: var(--jolt-teal);
+  color: var(--trellis-teal);
   text-decoration: none;
 }
 
@@ -265,15 +265,15 @@ body {
 }
 
 #toc .selected a:hover .bullet div {
-  background-color: var(--jolt-teal);
+  background-color: var(--trellis-teal);
 }
 
 #toc .selected .bullet {
-  background-color: var(--jolt-teal-light);
+  background-color: var(--trellis-teal-light);
 }
 
 #toc .selected .bullet div {
-  background-color: var(--jolt-teal);
+  background-color: var(--trellis-teal);
 }
 
 #toc .subitem {
@@ -313,7 +313,7 @@ body {
 }
 
 table, tbody tr td {
-  border: var(--jolt-black) solid 1px;
+  border: var(--trellis-black) solid 1px;
   text-align: center;
 }
 
@@ -333,16 +333,16 @@ table td:nth-child(2n-1) {
 .prose h1,
 .prose h2,
 .prose h3 {
-  color: var(--jolt-blue);
+  color: var(--trellis-blue);
   font-family: 'Montserrat';
 }
 
 .prose h4 {
-  color: var(--jolt-teal);
+  color: var(--trellis-teal);
 }
 
 .prose a {
-  color: var(--jolt-teal);
+  color: var(--trellis-teal);
   text-decoration: underline !important;
   text-decoration-color: #d2dcee !important;
   transition: all 0.3s ease;
@@ -427,7 +427,7 @@ table td:nth-child(2n-1) {
 }
 
 #our-team .profile > div > div > p {
-  color: var(--jolt-teal);
+  color: var(--trellis-teal);
   font-family: 'Roboto';
 }
 
@@ -480,7 +480,7 @@ table td:nth-child(2n-1) {
 }
 
 #presentation h2 {
-  color: var(--jolt-blue);
+  color: var(--trellis-blue);
   font-weight: 800;
   font-size: 2.25rem;
   margin-bottom: 1em;
@@ -497,7 +497,7 @@ table td:nth-child(2n-1) {
 }
 
 #start-here .static-logo-color {
-  background-image: url("../images/logo/jolt-logo.png");
+  background-image: url("../images/logo/trellis-logo.png");
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: 25%;
@@ -529,7 +529,7 @@ table td:nth-child(2n-1) {
   width: 100%;
 }
 
-#start-here > div div:last-child > img.jolt {
+#start-here > div div:last-child > img.trellis {
   max-width: 50%;
 }
 

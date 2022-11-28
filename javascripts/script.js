@@ -29,7 +29,7 @@ const handlePageLoad = () => {
   handleMainSectionSelection();
   handleTocVisibility();
   handleTocSelection();
-  cycleJoltFeatures();
+  cycleTrellisFeatures();
 };
 
 const handleProseSize = () => {
@@ -144,7 +144,7 @@ const handleTocSelection = () => {
   }
 };
 
-const cycleJoltFeatures = () => {
+const cycleTrellisFeatures = () => {
   const features = document.querySelector(".h-full h2").children;
   let currentIndex = 0;
   features[currentIndex].style.color = "#071E3D";
