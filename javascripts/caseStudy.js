@@ -70,14 +70,6 @@ const handleTocSelection = () => {
 const handleVideosAutoPlay = () => {
   for (let i = 0; i < videos.length; i++) {
     const video = videos[i];
-    // console.log({
-    //   videoOffset: video.offsetTop,
-    //   videoHeight: video.offsetHeight,
-    //   windowScroll: window.scrollY,
-    //   windowHeight: window.innerHeight,
-    //   headerHeight: header.offsetHeight,
-    //   difference: video.offsetTop - header.offsetHeight,
-    // });
 
     if (video.offsetTop - header.offsetHeight - window.innerHeight <= window.scrollY &&
         video.offsetTop + video.offsetHeight - header.offsetHeight >= window.scrollY) {

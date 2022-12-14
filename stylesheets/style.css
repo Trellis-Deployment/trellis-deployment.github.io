@@ -3,8 +3,8 @@
 /* @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap'); */
 
 :root {
-  --trellis-blue: #00B4FF;
-  --trellis-teal: #3D97D0;
+  --trellis-blue: rgb(31,150,255);
+  --trellis-dark-blue: rgba(4, 87, 159, 1);
   --trellis-teal-light: rgba(0, 189, 170, 0.2);
   --trellis-black: #071E3D;
 
@@ -52,7 +52,7 @@ body {
 }
 
 .bg-teal {
-  background-color: var(--trellis-teal);
+  background-color: var(--trellis-dark-blue);
 }
 
 .bg-pink {
@@ -68,7 +68,7 @@ body {
 }
 
 .text-teal {
-  color: var(--trellis-teal);
+  color: var(--trellis-dark-blue);
 }
 
 .block {
@@ -131,7 +131,7 @@ body {
   outline: 2px solid transparent;
   outline-offset: 2px;
 
-  box-shadow: 0 0 0 2px var(--white), 0 0 0 4px var(--trellis-teal);
+  box-shadow: 0 0 0 2px var(--white), 0 0 0 4px var(--trellis-dark-blue);
 }
 
 #menu button svg {
@@ -180,7 +180,7 @@ body {
 
 #mobile-menu > a.selected {
   background-color: var(--trellis-teal-light);
-  border-left-color: var(--trellis-teal);
+  border-left-color: var(--trellis-dark-blue);
   color: var(--trellis-black);
 }
 
@@ -228,7 +228,7 @@ body {
 }
 
 #toc .selected a {
-  color: var(--trellis-teal);
+  color: var(--trellis-dark-blue);
   text-decoration: none;
 }
 
@@ -265,7 +265,7 @@ body {
 }
 
 #toc .selected a:hover .bullet div {
-  background-color: var(--trellis-teal);
+  background-color: var(--trellis-dark-blue);
 }
 
 #toc .selected .bullet {
@@ -273,7 +273,7 @@ body {
 }
 
 #toc .selected .bullet div {
-  background-color: var(--trellis-teal);
+  background-color: var(--trellis-dark-blue);
 }
 
 #toc .subitem {
@@ -293,6 +293,7 @@ body {
 #case-study-content img {
   min-width: 100%;
   max-width: 100%;
+  margin: 0;
 }
 
 #case-study-content > div {
@@ -338,11 +339,11 @@ table td:nth-child(2n-1) {
 }
 
 .prose h4 {
-  color: var(--trellis-teal);
+  color: var(--trellis-dark-blue);
 }
 
 .prose a {
-  color: var(--trellis-teal);
+  color: var(--trellis-dark-blue);
   text-decoration: underline !important;
   text-decoration-color: #d2dcee !important;
   transition: all 0.3s ease;
@@ -358,7 +359,7 @@ table td:nth-child(2n-1) {
 
 /* Our Team */
 #our-team > div {
-  background-color: var(--gray-900);
+  background-color: var(--trellis-dark-blue);
 }
 
 #our-team > div > div {
@@ -394,7 +395,7 @@ table td:nth-child(2n-1) {
 }
 
 #our-team .profile {
-  background-color: var(--gray-800);
+  background-color: var(--trellis-blue);
   border-radius: 0.5rem;
   padding: 2rem 1rem;
   text-align: center;
@@ -427,7 +428,7 @@ table td:nth-child(2n-1) {
 }
 
 #our-team .profile > div > div > p {
-  color: var(--trellis-teal);
+  color: var(--trellis-dark-blue);
   font-family: 'Roboto';
 }
 
