@@ -684,45 +684,52 @@
               </p>
               <div id="the-build-server">
                 <h4>The Build Server</h4>
-                <div style="width:40%; float:left">
-                  <img src="images/diagrams/section2/build-server.png"/>
+                <div class="component-container">
+                  <div class="image">
+                    <img src="images/diagrams/section2/build-server.png"/>
+                  </div>
+                  <p>
+                    Trellis’ build server executes deployments to their target environments from an isolated machine and ensures
+                    that unique cloud resources are provisioned for each environment. This build server also performs teardowns
+                    and rollbacks for all deployment environments as requested by users. Executing these jobs on isolated machines
+                    ensures consistent reliability as there is no opportunity for a developer or their local tools and dependencies
+                    to interfere with the process.
+                  </p>
                 </div>
-                <p >
-                  Trellis’ build server executes deployments to their target environments from an isolated machine and ensures
-                  that unique cloud resources are provisioned for each environment. This build server also performs teardowns
-                  and rollbacks for all deployment environments as requested by users. Executing these jobs on isolated machines
-                  ensures consistent reliability as there is no opportunity for a developer or their local tools and dependencies
-                  to interfere with the process.
-                </p>
               </div>
               <div id="the-backend">
                 <h4>The Backend</h4>
-                <div style="width:40%; float:left">
-                  <img src="images/diagrams/section2/backend.png"/>
+                <div class="component-container">
+                  <div class="image">
+                    <img src="images/diagrams/section2/backend.png"/>
+                  </div>
+                  <p>
+                    The backend facilitates communication between the build server and the dashboard.
+                    Its database stores user login information, environment-specific settings, GitHub repository data,
+                    deployment environment status (e.g. deploying, deployed, tearing down), and logged output from the build server.
+                    Its API is responsible for initiating the build server, updating the database, and passing relevant data between
+                    the dashboard and build server so they can carry out their respective duties. 
+                  </p>
                 </div>
-                <p >
-                  The backend facilitates communication between the build server and the dashboard.
-                  Its database stores user login information, environment-specific settings, GitHub repository data,
-                  deployment environment status (e.g. deploying, deployed, tearing down), and logged output from the build server.
-                  Its API is responsible for initiating the build server, updating the database, and passing relevant data between
-                  the dashboard and build server so they can carry out their respective duties. 
-                </p>
               </div>
               <div id="the-dashboard">
                 <h4>The Dashboard</h4>
-                <div style="width:40%; float:left">
-                  <img src="images/diagrams/section2/dashboard.png"/>
+                <div class="component-container">
+                  <div class="image">
+                    <img src="images/diagrams/section2/dashboard.png"/>
+                  </div>
+                  <p>
+                    Trellis’ dashboard gives users a way to interact with their deployment pipelines. It displays the state of the
+                    deployment pipelines to users, provides configuration settings for customizing and managing their deployment environments,
+                    and displays controls for managing all of the pipeline’s features and triggering any manual steps of their pipelines.
+                  </p>
                 </div>
-                <p >
-                  Trellis’ dashboard gives users a way to interact with their deployment pipelines. It displays the state of the
-                  deployment pipelines to users, provides configuration settings for customizing and managing their deployment environments,
-                  and displays controls for managing all of the pipeline’s features and triggering any manual steps of their pipelines.
-                </p>
               </div>
             </div>
           </div>
           <div id="architecture">
             <h2>Architecture</h2>
+            
           </div>
           <div id="serverless-development">
             <h4>2.1.3 Serverless Development</h4>

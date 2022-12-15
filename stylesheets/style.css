@@ -195,7 +195,19 @@ body {
 .mobile-menu-open #mobile-open {
   display: none;
 }
-
+/*Start Here*/
+.transition-buttons {
+  font-size: xx-large;
+  background-color: var(--trellis-blue);
+}
+.transition-buttons a {
+  border: var(--trellis-black);
+  margin: 10%;
+  color: var(--white);
+  background-color: var(--trellis-dark-blue);
+  padding: 1%;
+  text-decoration: none;
+}
 /* TOC */
 #toc {
   background-color: var(--white);
@@ -311,6 +323,21 @@ body {
   visibility: hidden;
   pointer-events: none;
   font-family: 'Montserrat';
+}
+
+.component-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.component-container img {
+  max-width: 40%;
+}
+
+.component-container .image {
+  flex-basis: 100%;
+  margin-right: 2%;
 }
 
 table, tbody tr td {
