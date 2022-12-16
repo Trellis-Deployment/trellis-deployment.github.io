@@ -670,7 +670,9 @@ sub {
 }
 
 figcaption {
-  color: #718090
+  color: #718090;
+  text-align: center;
+  font-style: italic;
 }
 
 /* Vertically center command column text in table */
