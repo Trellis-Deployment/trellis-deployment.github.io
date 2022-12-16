@@ -581,9 +581,9 @@
                 and provides a simple web-based dashboard for managing and monitoring deployments with just a few clicks.
               </p>
               <p>
-                Seed is a mature tool with many features. For example, it offers email and webhook deployment notifications,
+                Seed is a mature tool with many features<a href="#reference-14"><sup>14</sup></a>. For example, it offers email and webhook deployment notifications,
                 supports multiple version control systems, and provides metrics for serverless functions and serverless APIs
-                <a href="#reference-14"><sup>14</sup></a><a href="#reference-15"><sup>15</sup></a>.
+                <a href="#reference-15"><sup>15</sup></a><a href="#reference-16"><sup>16</sup></a>.
                 But tools like Seed are not without their drawbacks. For example, Seed owns and operates its own pipeline infrastructure completely.
                 Because of this, users do not have complete control over their build servers or the databases that store sensitive information
                 such as build metadata, environment variables, and AWS IAM credentials. Further, Seed is not open-source,
@@ -684,94 +684,402 @@
               </p>
               <div id="the-build-server">
                 <h4>The Build Server</h4>
-                <div style="width:40%; float:left">
-                  <img src="images/diagrams/section2/build-server.png"/>
+                <div class="component-container">
+                  <div class="image">
+                    <img src="images/diagrams/section2/build-server.png"/>
+                  </div>
+                  <p>
+                    Trellis’ build server executes deployments to their target environments from an isolated machine and ensures
+                    that unique cloud resources are provisioned for each environment. This build server also performs teardowns
+                    and rollbacks for all deployment environments as requested by users. Executing these jobs on isolated machines
+                    ensures consistent reliability as there is no opportunity for a developer or their local tools and dependencies
+                    to interfere with the process.
+                  </p>
                 </div>
-                <p >
-                  Trellis’ build server executes deployments to their target environments from an isolated machine and ensures
-                  that unique cloud resources are provisioned for each environment. This build server also performs teardowns
-                  and rollbacks for all deployment environments as requested by users. Executing these jobs on isolated machines
-                  ensures consistent reliability as there is no opportunity for a developer or their local tools and dependencies
-                  to interfere with the process.
-                </p>
               </div>
               <div id="the-backend">
                 <h4>The Backend</h4>
-                <div style="width:40%; float:left">
-                  <img src="images/diagrams/section2/backend.png"/>
+                <div class="component-container">
+                  <div class="image">
+                    <img src="images/diagrams/section2/backend.png"/>
+                  </div>
+                  <p>
+                    The backend facilitates communication between the build server and the dashboard.
+                    Its database stores user login information, environment-specific settings, GitHub repository data,
+                    deployment environment status (e.g. deploying, deployed, tearing down), and logged output from the build server.
+                    Its API is responsible for initiating the build server, updating the database, and passing relevant data between
+                    the dashboard and build server so they can carry out their respective duties. 
+                  </p>
                 </div>
-                <p >
-                  The backend facilitates communication between the build server and the dashboard.
-                  Its database stores user login information, environment-specific settings, GitHub repository data,
-                  deployment environment status (e.g. deploying, deployed, tearing down), and logged output from the build server.
-                  Its API is responsible for initiating the build server, updating the database, and passing relevant data between
-                  the dashboard and build server so they can carry out their respective duties. 
-                </p>
               </div>
               <div id="the-dashboard">
                 <h4>The Dashboard</h4>
-                <div style="width:40%; float:left">
-                  <img src="images/diagrams/section2/dashboard.png"/>
+                <div class="component-container">
+                  <div class="image">
+                    <img src="images/diagrams/section2/dashboard.png"/>
+                  </div>
+                  <p>
+                    Trellis’ dashboard gives users a way to interact with their deployment pipelines. It displays the state of the
+                    deployment pipelines to users, provides configuration settings for customizing and managing their deployment environments,
+                    and displays controls for managing all of the pipeline’s features and triggering any manual steps of their pipelines.
+                  </p>
                 </div>
-                <p >
-                  Trellis’ dashboard gives users a way to interact with their deployment pipelines. It displays the state of the
-                  deployment pipelines to users, provides configuration settings for customizing and managing their deployment environments,
-                  and displays controls for managing all of the pipeline’s features and triggering any manual steps of their pipelines.
-                </p>
               </div>
             </div>
           </div>
           <div id="architecture">
-            <h2>Architecture</h2>
+            <h2>3. Architecture</h2>
+            <div id="trellis-as-a-serverless-application">
+              <h3>Trellis as a Serverless Application</h3>
+              <p>
+                As a deployment pipeline for small teams, Trellis is subjected to bursty traffic as its users are unlikely
+                to be deploying applications all day long. Therefore, they should not have to pay for long-standing servers
+                to run Trellis around the clock. Nonetheless, Trellis should still be ready for action at a moment’s notice.
+                Recognizing these needs, we designed Trellis with a serverless architecture that runs on Amazon Web Services (AWS).
+                Accordingly, Trellis is scalable, can execute concurrent deployments as needed, and will be completely inactive
+                while its users are not using it. Furthermore, Trellis’ target users are teams that deploy serverless applications using AWS,
+                and they can more-easily adopt and integrate Trellis into their existing workflows because it utilizes the same cloud provider
+                and cloud-based resources that they already work with. Furthermore, if users find the need to adjust how Trellis is configured
+                or customize any of its components down the road, they are more capable of doing so if its architecture uses a familiar paradigm.
+              </p>
+              <p>
+                As mentioned earlier, the resources that constitute serverless applications should be ephemeral,
+                meaning that after performing their respective tasks, they are deprovisioned entirely.
+                This requirement has major implications for our architectural decisions when designing Trellis’ main components,
+                which we will outline below.
+              </p>
+            </div>
+            <div id="build-server">
+              <h3>Build Server</h3>
+              <p>
+                Deployment pipelines traditionally use a dedicated build server to run the build process and deploy users’ applications.
+                Trellis is serverless and thus does not have a dedicated long-standing build server.
+                Nonetheless, we will continue to refer to the architecture components responsible for the deployments, teardowns,
+                and rollbacks as a build server. 
+              </p>
+              <p>
+                Recall that the build server needs to perform various functions, including retrieving code from the source code repository,
+                running necessary unit tests, and deploying code to a deployment environment. 
+              </p>
+                Trellis’ build server is implemented as an AWS Fargate task, which offers on-demand computing via containers.
+                Containers are stand-alone, executable software packages that include an application
+                and all the dependencies it needs to run<a href="#reference-17"><sup>17</sup></a>,
+                while images are templates that can be used to create containers. Each time it is invoked,
+                the Fargate task spins up a new container based on an image that is provided by Trellis and stored in the
+                AWS Elastic Container Registry. 
+              <p>
+                Each container has access to a sandboxed file system that it can use to clone source code from GitHub,
+                install application dependencies, and execute deployment-related commands. Build server containers are scaled in and out
+                according to incoming requests - in our case, each deployment to an environment invokes a new Fargate task so that
+                all deployments remain consistent and each one occurs in a fresh, isolated environment.
+                Finally, they are deprovisioned once they have completed their work.
+              </p>
+              <p>
+                Each build server task needs several pieces of data about the deployment to complete its job. Among this data are:
+              </p>
+              <ul>
+                <li>
+                  The type of build action (promotion, teardown, rollback)
+                </li>
+                <li>
+                  An identifier of the specific version of code to be cloned from GitHub and deployed to the cloud
+                </li>
+                <li>
+                  The name of the target deployment environment, which is prepended to the names of the resulting AWS resources
+                  to logically associate them with their environment
+                </li>
+                <li>
+                  Metadata about the deployment pipeline, such as the application name, whether unit tests should be run,
+                  and any environment variable the application uses
+                </li>
+              </ul>
+              <p>
+                Trellis’ backend is responsible for triggering the build server. This involves gathering deployment data,
+                initiating a Fargate task, and dynamically injecting the data into the task’s corresponding container as environment variables.
+              </p>
+              <p>
+                For Trellis to deploy AWS resources on behalf of its users, it must have both create and delete permissions
+                for all services used within their applications. Trellis stores these credentials using AWS Secrets Manager,
+                which requires that users or resources be given affirmative permission to access secrets.
+                Each build server container uses the AWS Software Development Kit (SDK) to programmatically access Trellis secrets,
+                which are stored with the prefix ‘trellis/`. Build server containers only have permission to access secrets with this prefix. 
+              </p>
+              <p>
+                Trellis’ build process is built atop an Infrastructure-as-Code (IaC) tool known as the Serverless Stack (SST) framework,
+                which itself is an abstraction built atop Amazon’s Cloud Development Kit(CDK).
+                IaC tools enable developers to specify resources using a familiar programming language, as opposed to manually
+                deploying resources individually on the AWS dashboard. When using IaC, the source code itself contains instructions
+                for what resources to deploy and how they should be connected, leaving less room for human error as resource
+                definitions can be written once and then shared or reused indefinitely.
+              </p>
+              <figure>
+                <video src="images/diagrams/section2/iac.mov" controls muted></video>
+              </figure>
+              <p>
+                IaC tools typically also offer commands for deploying the application and the cloud resources it relies on.
+                SST includes such commands, along with several other features like that make it easier to develop serverless applications on AWS.
+                Trellis deploys SST apps in particular, so it uses SST commands on the build server to deploy the users’ applications.
+                Logs of the entire build server process, including the SST commands, are sent to AWS CloudWatch, Amazon’s log storage service,
+                to be streamed to the user’s dashboard.
+              </p>
+              <img src="images/diagrams/section3/buildServer.png">
+            </div>
+            <div id="backend">
+              <h3>Backend</h3>
+              <p>
+                Trellis backend is a collection of serverless functions, an API gateway and a serverless database. 
+              </p>
+              <p>
+                The bulk of Trellis's backend is composed of multiple Lambda Functions. Lambda functions
+                are individually-defined units of executable logic. When a Lambda is invoked,
+                the cloud provider runs that function’s logic in a container.
+                The infrastructure that runs each function is provisioned and deprovisioned according to incoming demand,
+                and AWS scales the number of functions responding to requests to match incoming traffic flow.
+              </p>
+              <figure>
+                <img src="images/diagrams/section3/backend.png">
+                <figcaption>The backend is a collection of AWS Lambda functions, an API Gateway and an AWS DynamoDB </figcaption>
+              </figure>
+              <p>
+                There are separate lambda functions for managing each of Trellis responsibilities, including:
+              </p>
+              <ul>
+                <li>
+                  Adding new users
+                <li>
+                  Creating new applications
+                </li>
+                <li>
+                  Retrieving an application’s environments
+                </li>
+                <li>
+                  Promoting a development environment to production
+                </li>
+                <li>
+                  Authenticating users through GitHub
+                </li>
+                <li>
+                  Retrieving a list of user’s repositories, and so on.
+                </li>
+              </ul>
+              <p>
+                Trellis uses AWS API Gateway as the “front door” to its backend. AWS API Gateway is a service that makes
+                it easy for developers to create and secure APIs<a href="#reference-18"><sup>18</sup></a>.
+                An API Gateway can accept incoming HTTP requests and has Lambda functions associated with its URL endpoints.
+                These Lambdas are invoked to process requests and, if necessary, compose responses.
+              </p>
+              <p>
+                Among the Lambda functions that the API Gateway invokes is the “automatic deployment” Lambda.
+                Trellis implements automatic deployments by registering a webhook URL on all GitHub repositories that are connected
+                to a Trellis application. Webhooks are notifications sent over HTTP, allowing systems like Trellis to respond to
+                events as they occur instead of querying for changes. The webhook is configured to send a request to the API Gateway
+                whenever a new commit occurs on a GitHub branch. The API Gateway then invokes the “automatic build”
+                Lambda which checks if any deployment environment is associated with that branch.
+                If so, it triggers the build server to start deploying the code for that commit.
+              <p>
+                To execute automatic deployments along with all other functionalities,
+                Trellis needs to store data about the deployment pipelines it is managing, including data regarding users,
+                applications, environments, and deployments. Trellis stores this data in AWS DynamoDB,
+                a serverless AWS key-value NoSQL database. The information stored in the database includes the user's GitHub token,
+                an application’s repository, a deployment status, and other such metadata.
+              </p>
+            </div>
+            <div id="dashboard">
+              <h3>Dashboard</h3>
+              <p>
+                We built the Trellis dashboard as a single-page application in React.
+                This means that all dashboard users get the same copy of the dashboard HTML,
+                but the data is populated by making calls to Trellis’ backend. This allowed us to store the dashboard HTML in an AWS S3 bucket.
+                S3<a href="#reference-19"><sup>19</sup></a> is Amazon’s object storage service.
+                Static files, such as our dashboard HTML, can be retrieved directly from an S3 bucket.
+                Our dashboard is served using AWS CloudFront<a href="#reference-20"><sup>20</sup></a>, Amazon’s content delivery network.
+                Using S3 and CloudFront in this way allowed us to avoid using a long-running web server to serve the dashboard HTML.
+              </p>
+              <p>
+                Trellis users utilize the dashboard to trigger any of their pipelines' manual steps, including promotions, rollbacks,
+                and teardowns. The dashboard also provides a settings page for each deployment environment so that users can provide
+                environment variables to the build server, specify different AWS credentials for each deployment, toggle unit testing,
+                and more. Moreover, the dashboard starts a WebSocket connection with the backend’s API Gateway to convey the state of
+                deployments to Trellis users.
+              </p>
+              <figure>
+                <img src="images/diagrams/section3/dashboard.png">
+                <figcaption>The dashboard code is stored in AWS S3 and served via AWS CloudFront</figcaption>
+              </figure>
+            </div>
           </div>
-          <div id="serverless-development">
-            <h4>2.1.3 Serverless Development</h4>
+          <div id="engineering-decisions-and-tradeoffs">
+            <h2>4. Engineering Decisions & Tradeoffs</h2>
             <p>
-              With IaC, engineers can document, edit, distribute,
-              and replicate their infrastructure configurations using a familiar programming language<a href="#reference-2-5"><sup>2-5</sup></a>.
-              As such, application infrastructure can be coupled with the logic that depends on it,
-              turning source code and its corresponding builds into comprehensive artifacts that define everything the application needs to function [^5].
-              Because these artifacts precisely codify the infrastructure they rely on, they can be deployed with minimal manual configuration.
+              Now that we understand the architecture of Trellis, this section will discuss some challenges faced
+              in implementing this architecture.
             </p>
-            <video src="images/diagrams/section2/iac.mov" controls muted></video>
+            <div id="build-server-lambda-vs-fargate">
+              <h3>Build Server: Lambda vs Fargate</h3>
+              <p>
+                As mentioned above, Trellis does not have a persistent build server waiting around to execute deployments.
+                Instead, we needed a service that could provision build servers dynamically to execute deployment logic on demand.
+                We considered two AWS services to fulfill this need: AWS Lambda and AWS Elastic Container Service with Fargate.
+              </p>
+              <p>
+                Lambda functions have access to an underlying file system, can execute the commands to build and deploy applications,
+                and also has the auto-scaling characteristics we need for our build server.
+                With these characteristics, Lambda seemed like a potential fit for handling our build server’s duties.
+                However, Lambdas are limited to 15<a href="#reference-21"><sup>21</sup></a> minutes of runtime.
+                Even deploying a modestly-sized application such as Trellis itself exceeded that time limit;
+                hence, they are ill-suited for Trellis.
+              </p>
+              <p>
+                Our solution to avoiding the Lambda timeout limit was to utilize an AWS ECS Fargate task instead.
+                Like Lambda, Fargate offers an on-demand compute engine for executing logic.
+                Logic must be containerized by developers before it can run on Fargate,
+                making Fargate slightly more-complicated than Lambda in terms of setup<a href="#reference-22"><sup>22</sup></a>.
+                But this is a justifiable tradeoff considering that Fargate tasks are not subject to timeouts.
+                While the start-up times of ECS Fargate tasks is significantly greater than Lambdas (around a minute for
+                ECS Fargate tasks and under a second for Lambdas), the relatively long duration of the build process makes
+                this a negligible tradeoff. Otherwise, an ECS Fargate task is well-suited for executing builds and deployments -
+                we can spin up a task only when needed, and a containerized build server will be spun up to handle the deployment at hand.
+                Furthermore, the auto-scaling nature of ECS means that Trellis can handle concurrent deployments out of the box.
+              </p>
+            </div>
+            <div id="sending-real-time-data-to-the-dashboard">
+              <h3>Sending real-time data to the dashboard</h3>
+              <figure>
+                <img src="images/diagrams/section4/logs.png">
+              </figure>
+              <p>
+                In addition to providing a way to trigger deployments manually, the Trellis dashboard provides
+                users with information about the state of their deployment pipelines, including logs of the deployment process.
+                We recognized that this information should be as recent as possible so users can stay up-to-date on the progress
+                and status of their deployments. However, given that Trellis is composed of multiple ephemeral components,
+                sending deployment information to users in real time required efforts to facilitate real-time communication
+                between these components. To stream logs to the user in Trellis architecture, we needed to both retrieve the
+                deployment state as it changes and then send the updated state to the user in real-time. 
+              </p>
+              <figure>
+                <video src="images/diagrams/section4/flowOfDeploymentRequest">
+                <figcaption>Flow of a deployment request in Trellis</figcaption>
+              </figure>
+              <div id="retrieving-deployment-state-from-the-build-server">
+                <h4>Retrieving deployment state from the build server</h4>
+                <p>
+                  In the initial prototype of Trellis, the build server sent deployment state updates to the database in batches,
+                  only dispatching new logs after executing each command in the build process.
+                  The deployment command provided by SST compiles the application code down to resource templates.
+                  These templates are sent to AWS CloudFormation,
+                  which uses them to provision the resources defined in them<a href="#reference-23"><sup>23</sup></a>.
+                  Provisioning the resources with a single SST command may take over 20 minutes<a href="#reference-24"><sup>24</sup></a>.
+                  Consequently, waiting to log the output of the deployment command meant that the user could wait a long time
+                  before finding out whether their deployment occurred as expected. In other words,
+                  the logs and deployment status as shown on the dashboard did not necessarily reflect the current state of the deployment.
+                </p>
+                <figure>
+                  <video></video>
+                  <figcaption>Sending deployment logs in batches</figcaption>
+                </figure>
+                <p>
+                  To address this issue, we could have retrieved the state of resource deployments directly from CloudFormation.
+                  The CloudFormation console can be configured to send notifications whenever there is a change to the state
+                  of a particular resource in the cloud. As such, we considered sending deployment updates to the front-end after each
+                  of these notifications. However, CloudFormation only provides information on AWS infrastructure changes,
+                  which is just a partial picture of the Trellis deployment process. As mentioned earlier,
+                  the build server performs other tasks before issuing the SST deployment command; we wanted users
+                  to access the status and outputs of those commands as well. Doing so would ensure that the user
+                  has visibility of the entire deployment process, not just the resources being provisioned in AWS.
+                  For instance, they would know if the deployment process is disrupted by any errors thrown while commands
+                  are executed on the build server.
+                </p>
+                <p>
+                  While the build server is executing the deployment command, it makes frequent calls to CloudFormation
+                  to get resource deployment state and logs this information. The build server also creates logs related
+                  to the other build process commands, such as cloning the GitHub repository or installing the application dependencies.
+                  By capturing the build server's logs, we can gain a comprehensive real-time picture of the deployment status. 
+                </p>
+                <p>
+                  We used AWS CloudWatch to achieve this result. CloudWatch enables the connection of a specific AWS resource to a log group,
+                  which is composed of separate log streams connected to a particular instance of that resource.
+                  The logs of each ECS Fargate task are written to its connected log stream as they occur. 
+                </p>
+                <p>
+                  Whenever there is an update within a log group, Cloudwatch publishes a log event that other AWS resources
+                  can subscribe and react to. A Lambda function is configured to respond to events from this log group.
+                  When this Lambda is triggered, it writes the logs to the database, enabling Trellis to send them to the client as they occur.
+                </p>
+                <figure>
+                  <video></video>
+                  <figcaption>Streaming deployment logs</figcaption>
+                </figure>
+              </div>
+              <div id="sending-deployment-state">
+                <h4>Sending Deployment State</h4>
+                <p>
+                  Now that we have near real time logs in the backend, Trellis must pass this information to users of the dashboard.
+                  We considered achieving this via either client-side polling or WebSockets.
+                </p>
+                <figure>
+                  <img src="images/diagrams/section4/polling.png">
+                </figure>
+                <p>
+                  In client-side polling, the client repeatedly queries the (backend/server) for data,
+                  often at regular intervals of a few seconds. Client-side polling is straightforward to implement,
+                  as it only requires that the client be configured to send HTTP requests at a regular interval.
+                  However, consistently polling for data can generate unnecessary HTTP requests,
+                  and the polling interval can introduce a delay between updates on the backend and the front-end.
+                </p>
+                <figure>
+                  <img src="images/diagrams/section4/websocket.png">
+                </figure>
+                <p>
+                  WebSockets, on the other hand, allow for bidirectional communication between a client and a server.
+                  Rather than the client needing to send repeated requests to the server,
+                  a persistent connection between client and server is maintained so that the server can send the data
+                  to the client as soon as it is available. In the case of Trellis,
+                  we utilized the AWS WebSocket API which relies on an API gateway to persist open connections
+                  between clients and the backend AWS services.
+                  When the build server sends logs to a CloudWatch log group,
+                  the Lambda function that is subscribed to that log group sends data through this WebSocket connection
+                  to the client, providing real-time updates to the client regarding the state of their deployments.
+                </p>
+                <figure>
+                  <video></video>
+                  <figcaption>Logs are sent through several AWS resources before being sent to the client over the open WebSocket connection</figcaption>
+                </figure>
+              </div>
+            </div>
           </div>
-          <div id="serverless-development-with-serverless-stack">
-            <h4>2.1.4 Serverless Development With Serverless Stack</h4>
+          <div id="future-work">
+            <h2>5. Future Work</h2>
             <p>
-              There are several cloud providers, each with multiple IaC tooling solutions for developers to choose from.
-              The options include first-party solutions offered by the cloud provider directly (e.g. AWS CDK, GCP Deployment Manager, Axure Bicep),
-              vendor-agnostic tools built on first-party APIs (e.g. Terraform, Pulumi),
-              and even frameworks that abstract away common configurations and implement opinionated approaches to common full-stack development practices
-              (e.g. Serverless Framework, Serverless Stack).
-            </p>
-            <p>
-              In developing Trellis we have specifically chosen to support applications developed using the Serverless Stack (SST) Framework.
-              SST is a JavaScript framework which extends AWS CDK. In addition to being an IaC tool it offers several useful features for developers of serverless applications.
-              We chose to support SST because it[^6]:
+              Trellis is a fully-functioning low-config, self-hosted, and team-oriented automated deployment pipeline.
+              Nevertheless, there is always room for software to improve.
+              Below are some features we would like to implement in later iterations of Trellis.
             </p>
             <ul>
               <li>
-                Strives to make it easy to build serverless applications on AWS, and AWS is the most-widely-used cloud provider, consuming 30% of the global cloud market
+                Implement user roles with customizable permissions for each role
               </li>
               <li>
-                Provides high-level, composable constructs designed specifically for serverless applications, but also supports native CDK constructs when needed.
+                Optimize deployment times 
+                <ul>
+                  <li>
+                    Cache dependencies (e.g., Node Modules) in a shared file system to avoid re-downloading for every deployment
+                  </li>
+                  <li>
+                    Store build artifacts, so rollbacks don't require rebuilding an older application version
+                  </li>
+                </ul>
               </li>
               <li>
-                Is built on the AWS JavaScript CDK (Cloud Development Kit), which makes it accessible to millions of JavaScript users around the world. 
+                Offer a simple CLI for developers to manage and monitor deployments from a local console
               </li>
               <li>
-                Offers development tools like an infrastructure management console and live local lambda development,
-                which enables debugging breakpoints and instant feedback on changes made to lambda functions.
+                Allow users to connect Trellis to their Continuous Integration service in cases where their
+                serverless application is one part of a larger application with non-serverless components
               </li>
             </ul>
-            <p>
-              While these features make SST a helpful development framework,
-              developers still need to implement best practices throughout the entire software development life cycle to consistently release quality work.
-              In particular, Trellis builds on SST to help teams follow some of the best practices regarding application deployment.
-            </p>
           </div>
           <div id="references">
-            <h2>References</h2>
+            <h2>6. References</h2>
             <ol class="indented">
               <li id="reference-1"><a target="_" href="https://www.atlassian.com/devops" style=>https://www.atlassian.com/devops</a></li>
               <li id="reference-2"><a target="_" href="https://www.atlassian.com/continuous-delivery/continuous-integration" style=>https://www.atlassian.com/continuous-delivery/continuous-integration</a></li>
@@ -786,15 +1094,17 @@
               <li id="reference-11"><a target="_" href=" https://aws.amazon.com/serverless/" style=>https://aws.amazon.com/serverless/</a></li>
               <li id="reference-12"><a target="_" href="https://github.com/localstack/localstack" style=>https://github.com/localstack/localstack</a></li>
               <li id="reference-13"><a target="_" href="https://serverlessfirst.com/emails/testing-serverless-backends-survey-results-+-the-local-vs-cloud-debate/" style=>https://serverlessfirst.com/emails/testing-serverless-backends-survey-results-+-the-local-vs-cloud-debate/</a></li>
-              <li id="reference-14"><a target="_" href="https://seed.run/docs/viewing-metrics" style=>https://seed.run/docs/viewing-metrics</a></li>
-              <li id="reference-15"><a target="_" href="https://seed.run/docs/adding-build-notifications" style=>https://seed.run/docs/adding-build-notifications</a></li>
-
-              <li id="reference-1-6"><a target="_" href="" style=></a></li>
-
-
-
-
-              
+              <li id="reference-14"><a target="_" href=" https://seed.run/pricing" style=> https://seed.run/pricing</a></li>
+              <li id="reference-15"><a target="_" href="https://seed.run/docs/viewing-metrics" style=>https://seed.run/docs/viewing-metrics</a></li>
+              <li id="reference-16"><a target="_" href="https://seed.run/docs/adding-build-notifications" style=>https://seed.run/docs/adding-build-notifications</a></li>
+              <li id="reference-17"><a target="_" href="https://www.docker.com/resources/what-container/" style=>https://www.docker.com/resources/what-container/</a></li>
+              <li id="reference-18"><a target="_" href="https://aws.amazon.com/api-gateway/" style=>https://aws.amazon.com/api-gateway/</a></li>
+              <li id="reference-19"><a target="_" href="https://aws.amazon.com/s3/" style=>https://aws.amazon.com/s3/</a></li>
+              <li id="reference-20"><a target="_" href="https://aws.amazon.com/cloudfront/" style=>https://aws.amazon.com/cloudfront/</a></li>
+              <li id="reference-21"><a target="_" href="https://docs.aws.amazon.com/lambda/latest/dg/gettingstarted-limits.html" style=>https://docs.aws.amazon.com/lambda/latest/dg/gettingstarted-limits.html</a></li>
+              <li id="reference-22"><a target="_" href="https://www.simform.com/blog/aws-fargate-vs-lambda/" style=>https://www.simform.com/blog/aws-fargate-vs-lambda/</a></li>
+              <li id="reference-23"><a target="_" href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/cfn-whatis-howdoesitwork.html" style=>https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/cfn-whatis-howdoesitwork.html</a></li>
+              <li id="reference-24"><a target="_" href="​​https://seed.run/blog/speeding-up-serverless-deployments-100x.html" style=>https://seed.run/blog/speeding-up-serverless-deployments-100x.html</a></li>
             </ol>
           </div>
         </div>
