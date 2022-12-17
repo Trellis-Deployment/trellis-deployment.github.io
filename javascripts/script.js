@@ -2,13 +2,14 @@
 const navLinks = document.querySelectorAll("#header nav a");
 const navLinksCount = navLinks.length;
 const header = document.querySelector("header");
+const mobileMenuButton = document.querySelector("header #menu button");
+const mobileMenu = document.querySelector("#mobile-menu");
 const caseStudy = document.getElementById("case-study");
 const caseStudyText = document.querySelector(".prose");
 const toc = document.getElementById("toc");
 const tocLinks = document.querySelectorAll("#toc a");
 const tocLinksCount = tocLinks.length;
 const team = document.querySelector("#our-team ul li");
-console.log({team});
 
 // Handlers
 const handleScroll = () => {
@@ -31,6 +32,23 @@ const handlePageLoad = () => {
   handleTocSelection();
   cycleTrellisFeatures();
 };
+
+
+const cycleTrellisFeatures = () => {
+  const features = document.querySelector(".h-full h2").children;
+  let currentIndex = 0;
+  features[currentIndex].style.color = "#071E3D";
+
+  setInterval(() => {
+    features[currentIndex].style.color = "#fff";
+    currentIndex += 1;
+
+    if (currentIndex > 2) currentIndex = 0;
+
+    features[currentIndex].style.color = "#071E3D";
+
+  }, 2000);
+}
 
 const handleProseSize = () => {
   if (window.innerWidth >= 1280) {
@@ -135,7 +153,7 @@ const handleTocSelection = () => {
     if (!link.hash) continue;
     const target = document.querySelector(link.hash);
 
-    if (!!target && target.offsetTop <= window.scrollY) {
+    if (!!target && target.offsetTop <= window.scrollY + 16 * 2) {
       clearSelectedToc();
       selectTocItem(link, target);
 
@@ -144,21 +162,15 @@ const handleTocSelection = () => {
   }
 };
 
-const cycleTrellisFeatures = () => {
-  const features = document.querySelector(".h-full h2").children;
-  let currentIndex = 0;
-  features[currentIndex].style.color = "#071E3D";
+const handlemobileMenuClick = () => {
+  const menuOpen = header.classList.contains("mobile-menu-open");
 
-  setInterval(() => {
-    features[currentIndex].style.color = "#fff";
-    currentIndex += 1;
-
-    if (currentIndex > 2) currentIndex = 0;
-
-    features[currentIndex].style.color = "#071E3D";
-
-  }, 2000);
-}
+  if (menuOpen) {
+    header.classList.remove("mobile-menu-open");
+  } else {
+    header.classList.add("mobile-menu-open");
+  }
+};
 
 // Helpers
 const throttle = (callback, wait) => {
@@ -179,3 +191,56 @@ const throttle = (callback, wait) => {
 document.addEventListener("DOMContentLoaded", handlePageLoad);
 document.addEventListener("scroll", throttle(handleScroll, 16));
 window.addEventListener("resize", throttle(handleResize, 16));
+mobileMenuButton.addEventListener("click", handlemobileMenuClick);
+mobileMenu.addEventListener("click", handlemobileMenuClick);
+
+// Lazy image load
+document.addEventListener("DOMContentLoaded", function () {
+  var lazyloadImages;
+
+  if ("IntersectionObserver" in window) {
+    lazyloadImages = document.querySelectorAll(".lazy");
+    var imageObserver = new IntersectionObserver(function (entries, observer) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          var image = entry.target;
+          image.src = image.dataset.src;
+          image.classList.remove("lazy");
+          imageObserver.unobserve(image);
+        }
+      });
+    });
+
+    lazyloadImages.forEach(function (image) {
+      imageObserver.observe(image);
+    });
+  } else {
+    var lazyloadThrottleTimeout;
+    lazyloadImages = document.querySelectorAll("img");
+
+    function lazyload() {
+      if (lazyloadThrottleTimeout) {
+        clearTimeout(lazyloadThrottleTimeout);
+      }
+
+      lazyloadThrottleTimeout = setTimeout(function () {
+        var scrollTop = window.pageYOffset;
+        lazyloadImages.forEach(function (img) {
+          if (img.offsetTop < window.innerHeight + scrollTop) {
+            img.src = img.dataset.src;
+            img.classList.remove("lazy");
+          }
+        });
+        if (lazyloadImages.length == 0) {
+          document.removeEventListener("scroll", lazyload);
+          window.removeEventListener("resize", lazyload);
+          window.removeEventListener("orientationChange", lazyload);
+        }
+      }, 20);
+    }
+
+    document.addEventListener("scroll", lazyload);
+    window.addEventListener("resize", lazyload);
+    window.addEventListener("orientationChange", lazyload);
+  }
+});

@@ -5,6 +5,36 @@
     padding: 0 1.5rem;
   }
 
+  /* Our Team */
+  #our-team ul.people {
+    display: grid;
+    gap: 1.5rem;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  #our-team > div > div {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+
+  #our-team > div > div > div > * + * {
+    margin-top: 1rem;
+  }
+
+  #our-team > div > div > div h2 {
+    font-size: 2.25rem;
+    line-height: 2.5rem;
+  }
+
+  /* Presentation */
+  #presentation iframe {
+    max-height: 304px;
+    max-width: 540px;
+  }
+}
+
+/* md */
+@media (min-width: 768px) {
   #header nav {
     align-items: center;
     display: flex;
@@ -38,49 +68,18 @@
   }
 
   #header nav a.selected {
-    border-bottom-color: var(--ekko-teal);
-    color: var(--ekko-blue);
-  }
-
-  #menu {
-    display: none;
+    border-bottom-color: var(--trellis-bleu);
+    color: var(--trellis-blue);
   }
 
   #mobile-menu,
   .mobile-menu-open #mobile-menu {
     display: none;
   }
-
-  /* Our Team */
-  #our-team ul.people {
-    display: grid;
-    gap: 1.5rem;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+  
+  #menu {
+    display: none;
   }
-
-  #our-team > div > div {
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
-  }
-
-  #our-team > div > div > div > * + * {
-    margin-top: 1rem;
-  }
-
-  #our-team > div > div > div h2 {
-    font-size: 2.25rem;
-    line-height: 2.5rem;
-  }
-
-  /* Presentation */
-  #presentation iframe {
-    max-height: 304px;
-    max-width: 540px;
-  }
-}
-
-/* md */
-@media (min-width: 768px) {
   /* Our Team */
   #our-team > div > div > div {
     max-width: 36rem;
@@ -148,7 +147,7 @@
   }
 
   #start-here .static-logo-color {
-    background-image: url("../images/logo/ekko-logo.png");
+    background-image: url("../images/logo/trellis-logo.png");
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: 25%;
@@ -156,7 +155,7 @@
   }
 
   #start-here div.static-logo-teal-light {
-    background-image: url("../images/logo/ekko-logo-teal-light.png");
+    background-image: url("../images/logo/trellis-logo-lb.png");
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: 25%;
@@ -165,7 +164,7 @@
   }
 
   #start-here div.static-logo-pink-light {
-    background-image: url("../images/logo/ekko-logo-pink-light.png");
+    background-image: url("../images/logo/trellis-logo-pink-light.png");
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: 25%;
