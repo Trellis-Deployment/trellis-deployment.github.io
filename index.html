@@ -701,14 +701,14 @@
             main branch so that commits to main can be quickly deployed to a cloud environment. Users can configure other git branches
             to provide source code to each deployment environment as desired. 
           </p>
-          <img src="images/diagrams/section2/configure_github.png" class="rounded-corners" height="600" />
+          <img src="images/diagrams/section2/configure_github.png" class="rounded-corners" height="#" />
           <h4>Deploy</h4>
           <p>
             When code is committed to an application's GitHub repository, Trellis automatically starts deploying the new code
             to any environment that is configured to deploy that branch. If users want to deploy a commit that occurred before Trellis
             was configured, users can manually deploy the most-recent commit for any branch.
           </p>
-          <img src="images/diagrams/section2/deploy.jpg"  class="rounded-corners" height="500" />
+          <img src="images/diagrams/section2/deploy.jpg"  class="rounded-corners" height="#" />
           <h4>Promote</h4>
           <p>
             With the click of a button, Trellis users can promote code to the next environment once its developers are confident
@@ -716,7 +716,7 @@
             users to errors, bugs, or problematic infrastructure changes, Trellis ensures that the production environment is not
             configured for automatic deployments. Manual promotion to production is the only way to deploy an application to end users.
           </p>
-          <img src="images/diagrams/section2/promote.jpg"  class="rounded-corners" height="400" />
+          <img src="images/diagrams/section2/promote.jpg"  class="rounded-corners" height="#" />
           <h4>Teardown</h4>
           <p>
             In some instances, Trellis users might deploy their code, only to decide that it needs to be developed further and should
@@ -724,7 +724,7 @@
             so Trellis equips each deployment environment with a teardown button for removing all of the cloud resources associated with
             a deployed application.
           </p>
-          <img src="images/diagrams/section2/teardown.jpg"   class="rounded-corners" height="600" />
+          <img src="images/diagrams/section2/teardown.jpg"   class="rounded-corners" height="#" />
           <h4>Rollback</h4>
           <p>
             Sometimes, problematic code will be deployed to an environment and the development team will want to revert the environment
@@ -751,7 +751,7 @@
             this responsibility: a build server, a dashboard, and a backend.
           </p>
             <h4>The Build Server</h4>
-                <img  class="lazy" data-src="images/diagrams/section2/build-server.png"  height="200"/>
+                <img  class="lazy" data-src="images/diagrams/section2/build-server.png"  height="#"/>
               <p>
                 Trellis' build server executes deployments to their target environments from an isolated machine and ensures
                 that unique cloud resources are provisioned for each environment. This build server also performs teardowns
@@ -760,7 +760,7 @@
                 to interfere with the process.
               </p>
             <h4>The Backend</h4>
-                <img class="lazy" data-src="images/diagrams/section2/backend.png"  height="200"/>
+                <img class="lazy" data-src="images/diagrams/section2/backend.png"  height="#"/>
               <p>
                 The backend facilitates communication between the build server and the dashboard.
                 Its database stores user login information, environment-specific settings, GitHub repository data,
@@ -771,7 +771,7 @@
             <h4>The Dashboard</h4>
             <div class="component-container">
               <div class="image">
-                <img  class="lazy" data-src="images/diagrams/section2/dashboard.png"  height="200"/>
+                <img  class="lazy" data-src="images/diagrams/section2/dashboard.png"  height="#"/>
               </div>
               <p>
                 Trellis' dashboard gives users a way to interact with their deployment pipelines. It displays the state of the
@@ -1081,7 +1081,7 @@
               and the polling interval can introduce a delay between updates on the backend and the front-end.
             </p>
             <figure>
-              <img src="images/diagrams/section4/websocket_new.png">
+              <img src="images/diagrams/section4/websocket.png">
             </figure>
             <p>
               WebSockets, on the other hand, allow for bidirectional communication between a client and a server.
