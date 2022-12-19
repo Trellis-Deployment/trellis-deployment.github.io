@@ -592,3 +592,7 @@ body {
 #start-here video {
   max-width: 100%;
 }
+
+img.rounded-corners {
+  border-radius: 15px;
+}

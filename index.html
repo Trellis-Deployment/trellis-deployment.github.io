@@ -692,6 +692,7 @@
             Trellis users get a low-config deployment pipeline out of the box and still maintain control of their data. 
           </p>
           <h3 id="section-2-2">2.2 What Can Trellis Do?</h3>
+          <img src="images/diagrams/section2/showcase.jpg"  class="rounded-corners" height="#" />
           <h4>Get Code From GitHub</h4>
           <p>
             When users log into Trellis, they can create new applications and specify a GitHub repository that provides each
@@ -700,14 +701,14 @@
             main branch so that commits to main can be quickly deployed to a cloud environment. Users can configure other git branches
             to provide source code to each deployment environment as desired. 
           </p>
-          <img src=""/>
+          <img src="images/diagrams/section2/configure_github.png" class="rounded-corners" height="600" />
           <h4>Deploy</h4>
           <p>
             When code is committed to an application's GitHub repository, Trellis automatically starts deploying the new code
             to any environment that is configured to deploy that branch. If users want to deploy a commit that occurred before Trellis
             was configured, users can manually deploy the most-recent commit for any branch.
           </p>
-          <img src=""/>
+          <img src="images/diagrams/section2/deploy.jpg"  class="rounded-corners" height="500" />
           <h4>Promote</h4>
           <p>
             With the click of a button, Trellis users can promote code to the next environment once its developers are confident
@@ -715,7 +716,7 @@
             users to errors, bugs, or problematic infrastructure changes, Trellis ensures that the production environment is not
             configured for automatic deployments. Manual promotion to production is the only way to deploy an application to end users.
           </p>
-          <img src=""/>
+          <img src="images/diagrams/section2/promote.jpg"  class="rounded-corners" height="400" />
           <h4>Teardown</h4>
           <p>
             In some instances, Trellis users might deploy their code, only to decide that it needs to be developed further and should
@@ -723,7 +724,7 @@
             so Trellis equips each deployment environment with a teardown button for removing all of the cloud resources associated with
             a deployed application.
           </p>
-          <img src=""/>
+          <img src="images/diagrams/section2/teardown.jpg"   class="rounded-corners" height="600" />
           <h4>Rollback</h4>
           <p>
             Sometimes, problematic code will be deployed to an environment and the development team will want to revert the environment
@@ -732,7 +733,7 @@
             Trellis anticipates these scenarios and provides a rollback button for all deployment environments.
             Users can click this button and select a previous application version to re-deploy, or “roll back” to.
           </p>
-          <img src=""/>
+          <img src="images/diagrams/section2/rollback.jpg" class="rounded-corners" />
           <h4>Test</h4>
           <p>
             Unit tests can give confidence that code is behaving as expected.
@@ -741,7 +742,7 @@
             of the `npm run test` command each time a deployment takes place. If they need to run tests via a different command,
             they can configure that too.
           </p>
-          <img src=""/>
+          <img src="images/diagrams/section2/run_tests.jpg" class="rounded-corners" />
 
           <h3 id="section-2-3">2.3 What is Trellis Composed Of?</h3>
           <p>
@@ -767,7 +768,6 @@
                 Its API is responsible for initiating the build server, updating the database, and passing relevant data between
                 the dashboard and build server so they can carry out their respective duties. 
               </p>
-
             <h4>The Dashboard</h4>
             <div class="component-container">
               <div class="image">
@@ -1071,7 +1071,7 @@
               We considered achieving this via either client-side polling or WebSockets.
             </p>
             <figure>
-              <img src="images/diagrams/section4/polling.png">
+              <img src="images/diagrams/section4/polling_new.png">
             </figure>
             <p>
               In client-side polling, the client repeatedly queries the (backend/server) for data,
@@ -1081,7 +1081,7 @@
               and the polling interval can introduce a delay between updates on the backend and the front-end.
             </p>
             <figure>
-              <img src="images/diagrams/section4/websocket.png">
+              <img src="images/diagrams/section4/websocket_new.png">
             </figure>
             <p>
               WebSockets, on the other hand, allow for bidirectional communication between a client and a server.
@@ -1096,7 +1096,7 @@
             </p>
             <figure>
               <video autoplay loop muted playsinline>
-                <source src="images/video/4-7-logs-sent-through-aws-resources-client-websocket.mp4" type="video/mp4" />
+                <source src="images/video/4-7-logs-sent-through-aws-resources-client-over-websocket.mp4" type="video/mp4" />
               </video>
               <figcaption>Logs are sent through several AWS resources before being sent to the client over the open WebSocket connection</figcaption>
             </figure>
