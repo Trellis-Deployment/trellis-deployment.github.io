@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 26.0.2, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 24 24" style="enable-background:new 0 0 24 24;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill-rule:evenodd;clip-rule:evenodd;fill:url(#SVGID_1_);}
+	.st1{fill-rule:evenodd;clip-rule:evenodd;fill:#FFFFFF;}
+</style>
+<g id="Icon-Architecture_x2F_16_x2F_Arch_x5F_-Amazon-API-Gateway_x5F_16">
+	<g id="Rectangle">
+		
+			<linearGradient id="SVGID_1_" gradientUnits="userSpaceOnUse" x1="-280.7604" y1="392.0729" x2="-279.8229" y2="393.0104" gradientTransform="matrix(24 0 0 -24 6739 9433)">
+			<stop  offset="0" style="stop-color:#B0084D"/>
+			<stop  offset="1" style="stop-color:#FF4F8B"/>
+		</linearGradient>
+		<path class="st0" d="M2.6,0h18.9C22.9,0,24,1.1,24,2.6v18.9c0,1.4-1.1,2.6-2.6,2.6H2.6C1.1,24,0,22.9,0,21.4V2.6
+			C0,1.1,1.1,0,2.6,0z"/>
+	</g>
+	<g id="Icon-Service_x2F_16_x2F_Amazon-API-Gateway_x5F_16" transform="translate(4.000000, 4.000000)">
+		<path id="Amazon-API-Gateway_Icon_16_Squid" class="st1" d="M2,2.8l2-1.3v13.1l-2-1.3V2.8z M1,2.5v11c0,0.2,0.1,0.3,0.2,0.4l3,2
+			C4.3,16,4.4,16,4.5,16c0.1,0,0.2,0,0.2-0.1C4.9,15.9,5,15.7,5,15.5V13h1v-1H5V4h1V3H5V0.5c0-0.2-0.1-0.4-0.3-0.4
+			C4.6,0,4.4,0,4.2,0.1l-3,2C1.1,2.2,1,2.3,1,2.5L1,2.5z M15,13.2l-2,1.3V1.4l2,1.3V13.2z M15.8,2.1l-3-2c-0.2-0.1-0.4-0.1-0.5,0
+			C12.1,0.1,12,0.3,12,0.5V3h-1v1h1v8h-1v1h1v2.5c0,0.2,0.1,0.4,0.3,0.4c0.1,0,0.2,0.1,0.2,0.1c0.1,0,0.2,0,0.3-0.1l3-2
+			c0.1-0.1,0.2-0.2,0.2-0.4v-11C16,2.3,15.9,2.2,15.8,2.1L15.8,2.1z M9,4h1V3H9V4z M7,4h1V3H7V4z M9,13h1v-1H9V13z M7,13h1v-1H7V13z
+			 M9.2,10.9l-3-2.5C6.1,8.3,6,8.1,6,8c0-0.1,0.1-0.3,0.2-0.4l3-2.5l0.6,0.8L7.3,8l2.5,2.1L9.2,10.9z"/>
+	</g>
+</g>
+</svg>
