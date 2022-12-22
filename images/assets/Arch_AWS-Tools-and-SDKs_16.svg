@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 26.0.2, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 24 24" style="enable-background:new 0 0 24 24;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill-rule:evenodd;clip-rule:evenodd;fill:url(#Rectangle_00000100365318027840481590000009235608391134491800_);}
+	.st1{fill-rule:evenodd;clip-rule:evenodd;fill:#FFFFFF;}
+</style>
+<desc>Created with Sketch.</desc>
+<g id="Icon-Architecture_x2F_16_x2F_Arch_x5F_AWS-Tools-and-SDK_x5F_16">
+	<g id="Icon-Architecture-BG_x2F_16_x2F_Developer-Tools">
+		
+			<linearGradient id="Rectangle_00000158009391398915801240000015703096187226116740_" gradientUnits="userSpaceOnUse" x1="-280.6477" y1="392.1856" x2="-279.9356" y2="392.8977" gradientTransform="matrix(24 0 0 -24 6739 9433)">
+			<stop  offset="0" style="stop-color:#2E27AD"/>
+			<stop  offset="1" style="stop-color:#527FFF"/>
+		</linearGradient>
+		
+			<path id="Rectangle" style="fill-rule:evenodd;clip-rule:evenodd;fill:url(#Rectangle_00000158009391398915801240000015703096187226116740_);" d="
+			M11.8,0h0.4C18.7,0,24,5.3,24,11.8v0.4C24,18.7,18.7,24,12.2,24h-0.4C5.3,24,0,18.7,0,12.2v-0.4C0,5.3,5.3,0,11.8,0z"/>
+	</g>
+	<path id="AWS-Tools-and-SDK_Icon_16_Squid" class="st1" d="M17,15.2l-5.5,3.2L6,15.2V9l5.5-3L17,9V15.2z M17.7,8.3l-6-3.2
+		c-0.1-0.1-0.3-0.1-0.5,0l-6,3.2C5.1,8.4,5,8.6,5,8.8v6.7c0,0.2,0.1,0.3,0.2,0.4l6,3.5c0.1,0,0.2,0.1,0.2,0.1s0.2,0,0.2-0.1l6-3.5
+		c0.2-0.1,0.2-0.3,0.2-0.4V8.8C18,8.6,17.9,8.4,17.7,8.3L17.7,8.3z M13.4,10.3l-1.7,1l-1.9-1.1l1.7-0.9L13.4,10.3z M12,15.2v-2.9
+		l2-1.2v3L12,15.2z M9,11l2,1.2v3l-2-1.1V11z M11.3,8.3l-3,1.6C8.1,10,8,10.2,8,10.4v4c0,0.2,0.1,0.4,0.3,0.4l3,1.6
+		c0.1,0,0.2,0.1,0.2,0.1s0.2,0,0.2-0.1l3-1.6c0.2-0.1,0.3-0.3,0.3-0.4v-4c0-0.2-0.1-0.4-0.3-0.4l-3-1.6C11.6,8.3,11.4,8.3,11.3,8.3
+		L11.3,8.3z"/>
+</g>
+</svg>
