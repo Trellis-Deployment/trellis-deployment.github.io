@@ -33,11 +33,10 @@ const handlePageLoad = () => {
   cycleTrellisFeatures();
 };
 
-
 const cycleTrellisFeatures = () => {
   const features = document.querySelector(".h-full h2").children;
   let currentIndex = 0;
-  features[currentIndex].style.color = "#071E3D";
+  features[currentIndex].style.color = "#F8D3B3";
 
   setInterval(() => {
     features[currentIndex].style.color = "#fff";
@@ -45,7 +44,7 @@ const cycleTrellisFeatures = () => {
 
     if (currentIndex > 2) currentIndex = 0;
 
-    features[currentIndex].style.color = "#071E3D";
+    features[currentIndex].style.color = "#F8D3B3";
 
   }, 2000);
 }
