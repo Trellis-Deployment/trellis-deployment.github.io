@@ -193,7 +193,7 @@ window.addEventListener("resize", throttle(handleResize, 16));
 mobileMenuButton.addEventListener("click", handlemobileMenuClick);
 mobileMenu.addEventListener("click", handlemobileMenuClick);
 
-// Lazy image load
+// L I L
 document.addEventListener("DOMContentLoaded", function () {
   var lazyloadImages;
 
